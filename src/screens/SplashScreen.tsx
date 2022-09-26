@@ -1,5 +1,6 @@
 import {useEffect, useRef, useState} from 'react';
 import {View, Text, StyleSheet, Animated} from 'react-native';
+import React from 'react';
 
 export function WithSplashScreen({
   children,
@@ -38,7 +39,7 @@ export default function SplashScreen({isAppReady}: {isAppReady: boolean}) {
     if (state === FADE_IN_IMAGE) {
       Animated.timing(imageOpacity, {
         toValue: 1,
-        duration: 1000, // Fade in duration
+        duration: 10000, // Fade in duration
         useNativeDriver: true,
       }).start(() => {
         setState(WAIT_FOR_APP_TO_BE_READY);
@@ -87,8 +88,9 @@ export default function SplashScreen({isAppReady}: {isAppReady: boolean}) {
 const style = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: '#E0B9BB', //<-- set the background color to the apps color
+    backgroundColor: 'rgba(79, 91, 16, 0.2)', //<-- set the background color to the apps color
     alignItems: 'center',
+    
     justifyContent: 'center',
   },
   image: {

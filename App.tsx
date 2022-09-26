@@ -1,24 +1,27 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React from 'react';
-import {
-  SafeAreaView,
-  Text,
-} from 'react-native';
-
-
+import React, {useEffect, useRef, useState} from 'react';
+import {SafeAreaView, Text} from 'react-native';
+import HomePage from './src/screens/Homepage';
+import {WithSplashScreen} from './src/screens/SplashScreen';
 
 const App = () => {
+  const store = useRef(undefined);
+  const queryClient = useRef(undefined);
+
+  const [isAppReady, setIsAppReady] = useState(false);
+
+  useEffect(() => {
+    // initialize().then((context) => {
+    //   store.current = context.store
+    //   queryClient.current = context.queryClient
+    setIsAppReady(true);
+  }, []);
+
   return (
-    <SafeAreaView>
-      <Text>Hello World</Text>
-    </SafeAreaView>
+    <WithSplashScreen isAppReady={isAppReady}>
+      <SafeAreaView>
+        <Text>Homepage</Text>
+      </SafeAreaView>
+    </WithSplashScreen>
   );
 };
 
